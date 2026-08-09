@@ -50,7 +50,9 @@ It provides a centralized platform to manage customers, products, inventory, sto
 
 ## Project Structure
 
+```text
 supplyhub/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── config/
@@ -58,25 +60,33 @@ supplyhub/
 │   │   ├── middleware/
 │   │   ├── routes/
 │   │   └── index.ts
+│   │
 │   ├── package.json
 │   └── tsconfig.json
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/
 │   │   ├── assets/
+│   │   ├── pages/
 │   │   ├── App.tsx
 │   │   ├── Layout.tsx
 │   │   ├── Login.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Customers.tsx
+│   │   ├── index.css
 │   │   └── main.tsx
+│   │
 │   ├── package.json
+│   ├── tsconfig.json
 │   └── vite.config.ts
 │
 ├── .gitignore
 └── README.md
+```
 
 ## Main Business Flow
 
+```text
 User Login
     ↓
 Role Authentication
@@ -100,6 +110,7 @@ Deduct Stock
 Create Stock OUT Movement
     ↓
 Generate Invoice
+```
 
 ## User Roles
 
@@ -124,39 +135,53 @@ The system prevents stock from becoming negative.
 
 ### 1. Clone the Repository
 
+```bash
 git clone https://github.com/santhoshreddy28/supplyhub.git
 cd supplyhub
+```
 
 ### 2. Backend Setup
 
+```bash
 cd backend
 npm install
+```
 
-Create a .env file inside the backend directory:
+Create a `.env` file inside the backend directory:
 
+```env
 DATABASE_URL=your_database_url
 JWT_SECRET=your_jwt_secret
 PORT=5000
+```
 
 Start the backend:
 
+```bash
 npm run dev
+```
 
 The backend runs on:
 
+```text
 http://localhost:5000
+```
 
 ### 3. Frontend Setup
 
 Open another terminal:
 
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-The frontend will be available at the URL provided by Vite, normally:
+The frontend will normally be available at:
 
+```text
 http://localhost:5173
+```
 
 ## Authentication
 
@@ -170,6 +195,7 @@ Role-based authorization controls access to different business operations.
 
 The backend is organized into separate REST API modules:
 
+```text
 /auth
 /products
 /customers
@@ -178,6 +204,7 @@ The backend is organized into separate REST API modules:
 /dashboard
 /challans
 /invoices
+```
 
 ## Security
 
@@ -186,7 +213,7 @@ The backend is organized into separate REST API modules:
 - Protected API routes require authentication.
 - Role-based authorization is applied to restricted operations.
 - Environment variables are used for database credentials and secrets.
-- .env files are excluded from Git.
+- `.env` files are excluded from Git.
 
 ## Application Modules
 
@@ -224,6 +251,7 @@ Manage invoices generated from sales transactions and view invoice information.
 
 ## Business Workflow
 
+```text
 Customer
    ↓
 Sales Order
@@ -237,6 +265,7 @@ Inventory Deduction
 Stock Movement
    ↓
 Invoice
+```
 
 ## Screenshots
 
@@ -263,10 +292,9 @@ The application includes interfaces for:
 
 ## Author
 
-Santhosh Reddy
+**Santhosh Reddy**
 
-GitHub:
-https://github.com/santhoshreddy28
+GitHub: https://github.com/santhoshreddy28
 
 ## License
 
