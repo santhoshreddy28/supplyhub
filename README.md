@@ -2,12 +2,7 @@
 
 > A full-stack ERP & CRM platform designed for wholesale and distribution businesses to manage customers, products, inventory, stock movements, sales challans, and invoices through a secure role-based business workflow.
 
-<p align="center">
-
 **React • TypeScript • Node.js • Express.js • PostgreSQL • JWT**
-
-</p>
-
 
 ---
 
@@ -15,9 +10,9 @@
 
 The following accounts are provided for evaluation and demonstration of the role-based access control system.
 
-| Role             | Email                        | Password                  |
-| ---------------- | ---------------------------- | ------------------------- |
-| 👑 **Admin**     | `iamadmin@supplyflow.com`    | `Admin@123`               |
+| Role             | Email                        | Password        |
+| ---------------- | ---------------------------- | --------------- |
+| 👑 **Admin**     | `iamadmin@supplyflow.com`    | `Admin@123`     |
 | 📦 **Warehouse** | `iamwarehouse@supplyhub.com` | `Warehouse@123` |
 | 💼 **Sales**     | `iamsales@supplyhub.com`     | `Sales@123`     |
 | 👤 **Customer**  | `iamcustomer@supplyhub.com`  | `Customer@123`  |
@@ -46,9 +41,14 @@ The following accounts are provided for evaluation and demonstration of the role
 **Customer**
 
 * Customer-specific permitted functionality
+
+> 💡 **For Evaluators:** Use the accounts above to explore SupplyHub and test the role-based access control and complete business workflow.
+
+> ⚠️ **Demo Account Notice:** These credentials are provided only for evaluation/demo purposes. Do not use them for sensitive or production data.
+
 ---
 
-# 📌 Overview
+# 📌 Project Overview
 
 **SupplyHub** is a full-stack ERP & CRM web application designed to centralize important business operations for wholesale and distribution companies.
 
@@ -303,7 +303,7 @@ This prevents inventory from becoming negative.
 
 ```text
 ┌─────────────────────────────────────────┐
-│              FRONTEND                   │
+│               FRONTEND                  │
 │                                         │
 │        React + TypeScript + Vite        │
 │                                         │
@@ -314,7 +314,7 @@ This prevents inventory from becoming negative.
                      │ REST API
                      ↓
 ┌─────────────────────────────────────────┐
-│               BACKEND                   │
+│                BACKEND                  │
 │                                         │
 │      Node.js + Express + TypeScript     │
 │                                         │
@@ -329,7 +329,7 @@ This prevents inventory from becoming negative.
                      │
                      ↓
 ┌─────────────────────────────────────────┐
-│                DATABASE                 │
+│               DATABASE                  │
 │                                         │
 │         PostgreSQL / Neon               │
 │                                         │
@@ -416,7 +416,7 @@ supplyhub/
 
 # 🔌 REST API
 
-The backend is organized into separate REST API modules.
+The backend is organized into separate REST API modules:
 
 ```text
 /auth
@@ -540,10 +540,6 @@ The invoice module manages invoices associated with completed sales transactions
 
 ---
 
-# 🎥 Project Demonstration
-
-A complete walkthrough of SupplyHub is available in the project demo video.
----
 # 🚀 Getting Started
 
 ## Prerequisites
@@ -557,7 +553,7 @@ Make sure you have installed:
 
 ---
 
-## 1. Clone Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/santhoshreddy28/supplyhub.git
@@ -567,7 +563,7 @@ cd supplyhub
 
 ---
 
-# 2. Backend Setup
+## 2. Backend Setup
 
 ```bash
 cd backend
@@ -597,7 +593,7 @@ http://localhost:5000
 
 ---
 
-# 3. Frontend Setup
+## 3. Frontend Setup
 
 Open another terminal:
 
@@ -643,45 +639,45 @@ or real credentials/secrets to GitHub.
 
 ---
 
-# 🧪 Testing the Application
+# 🧪 Evaluation / Testing Guide
 
-For evaluation, the recommended testing order is:
+For evaluators, the recommended testing order is:
 
-### Step 1 — Login
+### 1. Login
 
-Use one of the demo accounts above.
+Use one of the demo accounts provided above.
 
-### Step 2 — Explore Role Permissions
+### 2. Test Role Permissions
 
-Compare what different roles can access.
+Login with different roles and compare their available functionality.
 
-### Step 3 — Explore Products
+### 3. Explore Products
 
-Create/view products and review stock information.
+Create or view products and review their stock information.
 
-### Step 4 — Explore Inventory
+### 4. Explore Inventory
 
 Check current stock and stock movement history.
 
-### Step 5 — Create a Challan
+### 5. Create a Challan
 
 Create a sales challan using a customer and available products.
 
-### Step 6 — Confirm Challan
+### 6. Confirm the Challan
 
-Confirm the challan and observe the inventory validation.
+Confirm the challan and observe inventory validation.
 
-### Step 7 — Verify Stock
+### 7. Verify Stock Deduction
 
 Check that the relevant stock quantity has been deducted.
 
-### Step 8 — Check Stock Movement
+### 8. Verify Stock Movement
 
-Verify that the corresponding Stock OUT movement has been recorded.
+Confirm that the corresponding **Stock OUT** movement has been recorded.
 
-### Step 9 — Check Invoice
+### 9. Check Invoice
 
-Review the invoice generated from the completed sales workflow.
+Review the invoice associated with the completed sales workflow.
 
 ---
 
@@ -726,7 +722,7 @@ The project focuses on:
 
 # 📈 Future Improvements
 
-Planned improvements include:
+Potential future enhancements include:
 
 * Invoice PDF export
 * Advanced dashboard analytics
@@ -786,7 +782,7 @@ Role-Based Access
 ERP / CRM Workflow
 ```
 
-The project is designed to demonstrate how a real-world business workflow can be implemented as a complete full-stack application.
+The project demonstrates how a real-world business workflow can be implemented as a complete full-stack application.
 
 ---
 
