@@ -138,7 +138,7 @@ const Products = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/products?${params.toString()}`,
+        `/api/products?${params.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -184,7 +184,7 @@ const Products = () => {
           localStorage.getItem("token");
 
         const response = await fetch(
-          "http://localhost:5000/products/alerts/low-stock",
+          "/api/products/alerts/low-stock",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -331,7 +331,7 @@ const Products = () => {
         localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/products/${product.id}`,
+        `/api/products/${product.id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -394,7 +394,7 @@ const Products = () => {
         localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/products",
+        "/api/products",
         {
           method: "POST",
           headers: {
@@ -478,7 +478,7 @@ const Products = () => {
           localStorage.getItem("token");
 
         const response = await fetch(
-          `http://localhost:5000/products/${editingProductId}`,
+          `/api/products/${editingProductId}`,
           {
             method: "PUT",
             headers: {
