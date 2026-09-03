@@ -7,11 +7,20 @@ export const createStockMovement = async (
   res: Response
 ) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
+
+    // Express 5 can type route params as string | string[].
+    // Make sure we have a single string.
+    if (Array.isArray(id)) {
+      return res.status(400).json({
+        message: "Invalid product ID",
+      });
+    }
+
     const {
       quantity,
       movement_type,
-      reason
+      reason,
     } = req.body;
 
     if (
@@ -19,7 +28,7 @@ export const createStockMovement = async (
       !/^[0-9a-fA-F-]{36}$/.test(id)
     ) {
       return res.status(400).json({
-        message: "Invalid product ID"
+        message: "Invalid product ID",
       });
     }
 
@@ -32,7 +41,7 @@ export const createStockMovement = async (
     ) {
       return res.status(400).json({
         message:
-          "Quantity must be a positive integer"
+          "Quantity must be a positive integer",
       });
     }
 
@@ -42,7 +51,7 @@ export const createStockMovement = async (
     ) {
       return res.status(400).json({
         message:
-          "Movement type must be IN or OUT"
+          "Movement type must be IN or OUT",
       });
     }
 
@@ -59,7 +68,7 @@ export const createStockMovement = async (
 
     if (productResult.length === 0) {
       return res.status(404).json({
-        message: "Product not found"
+        message: "Product not found",
       });
     }
 
@@ -80,11 +89,12 @@ export const createStockMovement = async (
       return res.status(400).json({
         message: "Stock cannot go below zero",
         currentStock,
-        requestedQuantity: numericQuantity
+        requestedQuantity: numericQuantity,
       });
     }
 
-    const userId = req.user?.userId || null;
+    const userId =
+      req.user?.userId || null;
 
     const movementResult = await sql`
       INSERT INTO stock_movements (
@@ -128,7 +138,7 @@ export const createStockMovement = async (
 
       movement: movementResult[0],
 
-      product: updatedProduct[0]
+      product: updatedProduct[0],
     });
   } catch (error: any) {
     console.error(
@@ -151,7 +161,7 @@ export const createStockMovement = async (
       error:
         process.env.NODE_ENV === "development"
           ? error?.message
-          : undefined
+          : undefined,
     });
   }
 };
@@ -161,14 +171,22 @@ export const getStockMovements = async (
   res: Response
 ) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
+
+    // Express 5 can type route params as string | string[].
+    // Make sure we have a single string.
+    if (Array.isArray(id)) {
+      return res.status(400).json({
+        message: "Invalid product ID",
+      });
+    }
 
     if (
       !id ||
       !/^[0-9a-fA-F-]{36}$/.test(id)
     ) {
       return res.status(400).json({
-        message: "Invalid product ID"
+        message: "Invalid product ID",
       });
     }
 
@@ -185,7 +203,7 @@ export const getStockMovements = async (
 
     if (productResult.length === 0) {
       return res.status(404).json({
-        message: "Product not found"
+        message: "Product not found",
       });
     }
 
@@ -205,7 +223,7 @@ export const getStockMovements = async (
 
     return res.json({
       product: productResult[0],
-      movements
+      movements,
     });
   } catch (error: any) {
     console.error(
@@ -229,7 +247,7 @@ export const getStockMovements = async (
       error:
         process.env.NODE_ENV === "development"
           ? error?.message
-          : undefined
+          : undefined,
     });
   }
 };
