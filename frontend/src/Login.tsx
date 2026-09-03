@@ -32,16 +32,16 @@ function Login({ onLogin }: LoginProps) {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/auth/login",
+        "/api/auth/login",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             email: email.trim(),
-            password
-          })
+            password,
+          }),
         }
       );
 
@@ -76,7 +76,6 @@ function Login({ onLogin }: LoginProps) {
         data.user,
         data.token
       );
-
     } catch (error) {
       console.error(
         "Login error:",
@@ -86,7 +85,6 @@ function Login({ onLogin }: LoginProps) {
       setMessage(
         "Unable to connect to the server"
       );
-
     } finally {
       setLoading(false);
     }
@@ -109,13 +107,11 @@ function Login({ onLogin }: LoginProps) {
 
         </div>
 
-
         <div className="login-content">
 
           <div className="login-badge">
             ERP & CRM PLATFORM
           </div>
-
 
           <h1>
             Manage your business
@@ -123,13 +119,11 @@ function Login({ onLogin }: LoginProps) {
             <span>smarter.</span>
           </h1>
 
-
           <p className="login-description">
             A centralized platform for
             managing products, inventory,
             customers and business operations.
           </p>
-
 
           <div className="login-features">
 
@@ -153,7 +147,6 @@ function Login({ onLogin }: LoginProps) {
 
             </div>
 
-
             <div className="login-feature">
 
               <div className="feature-icon">
@@ -173,7 +166,6 @@ function Login({ onLogin }: LoginProps) {
               </div>
 
             </div>
-
 
             <div className="login-feature">
 
@@ -199,13 +191,11 @@ function Login({ onLogin }: LoginProps) {
 
         </div>
 
-
         <div className="login-footer">
           © 2026 SupplyHub. All rights reserved.
         </div>
 
       </div>
-
 
       <div className="login-right">
 
@@ -225,19 +215,16 @@ function Login({ onLogin }: LoginProps) {
 
             </div>
 
-
             <h2>
               Everything your business
               needs, in one place.
             </h2>
-
 
             <p>
               Sign in to access your workspace
             </p>
 
           </div>
-
 
           <form
             onSubmit={handleLogin}
@@ -275,7 +262,6 @@ function Login({ onLogin }: LoginProps) {
               </div>
 
             </div>
-
 
             <div className="login-form-group">
 
@@ -328,9 +314,7 @@ function Login({ onLogin }: LoginProps) {
 
             </div>
 
-
             {message && (
-
               <div className="login-error">
 
                 <span>
@@ -340,9 +324,7 @@ function Login({ onLogin }: LoginProps) {
                 {message}
 
               </div>
-
             )}
-
 
             <button
               type="submit"
@@ -355,7 +337,6 @@ function Login({ onLogin }: LoginProps) {
             </button>
 
           </form>
-
 
           <div className="login-security">
 
