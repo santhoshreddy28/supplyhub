@@ -111,7 +111,6 @@ function Customers() {
   const [selectedCustomerId, setSelectedCustomerId] =
     useState<string | null>(null);
 
-
   const fetchCustomers = async (
     searchValue = ""
   ) => {
@@ -123,7 +122,7 @@ function Customers() {
         localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/customers?search=${encodeURIComponent(
+        `/api/customers?search=${encodeURIComponent(
           searchValue
         )}`,
         {
@@ -154,11 +153,9 @@ function Customers() {
     }
   };
 
-
   useEffect(() => {
     fetchCustomers();
   }, []);
-
 
   const handleFormChange = (
     e: ChangeEvent<
@@ -178,7 +175,6 @@ function Customers() {
     }));
   };
 
-
   const openAddForm = () => {
     if (!canManageCustomers) {
       return;
@@ -190,7 +186,6 @@ function Customers() {
     setSuccess("");
     setShowForm(true);
   };
-
 
   const openEditForm = (
     customer: Customer
@@ -232,14 +227,12 @@ function Customers() {
     setShowForm(true);
   };
 
-
   const closeForm = () => {
     setShowForm(false);
     setEditingCustomerId(null);
     setForm(emptyForm);
     setError("");
   };
-
 
   const handleSubmit = async (
     e: FormEvent
@@ -271,8 +264,8 @@ function Customers() {
 
       const url =
         editingCustomerId
-          ? `http://localhost:5000/customers/${editingCustomerId}`
-          : "http://localhost:5000/customers";
+          ? `/api/customers/${editingCustomerId}`
+          : "/api/customers";
 
       const method =
         editingCustomerId
@@ -343,7 +336,6 @@ function Customers() {
     }
   };
 
-
   if (loading) {
     return (
       <div className="page-loading">
@@ -351,7 +343,6 @@ function Customers() {
       </div>
     );
   }
-
 
   if (selectedCustomerId) {
     return (
@@ -366,13 +357,13 @@ function Customers() {
     );
   }
 
-
   return (
     <div className="customers-page">
 
       <div className="page-header">
 
         <div>
+
           <h1>
             Customers
           </h1>
@@ -380,6 +371,7 @@ function Customers() {
           <p>
             Manage your CRM customers
           </p>
+
         </div>
 
         {canManageCustomers && (
@@ -393,20 +385,17 @@ function Customers() {
 
       </div>
 
-
       {success && (
         <div className="success-message">
           {success}
         </div>
       )}
 
-
       {error && (
         <div className="error-message">
           {error}
         </div>
       )}
-
 
       <div className="search-container">
 
@@ -424,7 +413,6 @@ function Customers() {
         />
 
       </div>
-
 
       {showForm && (
         <div
@@ -469,7 +457,6 @@ function Customers() {
 
             </div>
 
-
             <form
               className="customer-form"
               onSubmit={handleSubmit}
@@ -495,7 +482,6 @@ function Customers() {
 
                 </div>
 
-
                 <div className="form-field">
 
                   <label>
@@ -514,7 +500,6 @@ function Customers() {
 
                 </div>
 
-
                 <div className="form-field">
 
                   <label>
@@ -532,7 +517,6 @@ function Customers() {
                   />
 
                 </div>
-
 
                 <div className="form-field">
 
@@ -553,7 +537,6 @@ function Customers() {
 
                 </div>
 
-
                 <div className="form-field">
 
                   <label>
@@ -572,7 +555,6 @@ function Customers() {
                   />
 
                 </div>
-
 
                 <div className="form-field">
 
@@ -606,7 +588,6 @@ function Customers() {
 
                 </div>
 
-
                 <div className="form-field">
 
                   <label>
@@ -637,7 +618,6 @@ function Customers() {
 
                 </div>
 
-
                 <div className="form-field">
 
                   <label>
@@ -659,7 +639,6 @@ function Customers() {
 
               </div>
 
-
               <div className="form-field">
 
                 <label>
@@ -677,7 +656,6 @@ function Customers() {
                 />
 
               </div>
-
 
               <div className="form-field">
 
@@ -697,13 +675,11 @@ function Customers() {
 
               </div>
 
-
               {error && (
                 <div className="error-message">
                   {error}
                 </div>
               )}
-
 
               <div className="form-actions">
 
@@ -714,7 +690,6 @@ function Customers() {
                 >
                   Cancel
                 </button>
-
 
                 <button
                   type="submit"
@@ -737,7 +712,6 @@ function Customers() {
         </div>
       )}
 
-
       <div className="customer-table-container">
 
         <table className="customer-table">
@@ -745,16 +719,22 @@ function Customers() {
           <thead>
 
             <tr>
+
               <th>Name</th>
+
               <th>Business</th>
+
               <th>Mobile</th>
+
               <th>Type</th>
+
               <th>Status</th>
+
               <th>Actions</th>
+
             </tr>
 
           </thead>
-
 
           <tbody>
 
@@ -792,26 +772,28 @@ function Customers() {
 
                     </td>
 
-
                     <td>
+
                       {
                         customer.business_name ||
                         "-"
                       }
+
                     </td>
 
-
                     <td>
+
                       {customer.mobile}
+
                     </td>
 
-
                     <td>
+
                       {
                         customer.customer_type
                       }
-                    </td>
 
+                    </td>
 
                     <td>
 
@@ -823,10 +805,10 @@ function Customers() {
 
                     </td>
 
-
                     <td>
 
                       {canManageCustomers && (
+
                         <button
                           className="edit-button"
                           onClick={() =>
@@ -837,6 +819,7 @@ function Customers() {
                         >
                           Edit
                         </button>
+
                       )}
 
                     </td>
@@ -868,7 +851,6 @@ interface CustomerDetailsProps {
   onBack: () => void;
 }
 
-
 function CustomerDetails({
   customerId,
   onBack
@@ -883,7 +865,6 @@ function CustomerDetails({
     role === "admin" ||
     role === "accounts" ||
     role === "sales";
-
 
   const [customer, setCustomer] =
     useState<Customer | null>(null);
@@ -915,7 +896,6 @@ function CustomerDetails({
   const [followUpSuccess, setFollowUpSuccess] =
     useState("");
 
-
   const fetchCustomer = async () => {
 
     try {
@@ -928,7 +908,7 @@ function CustomerDetails({
 
       const response =
         await fetch(
-          `http://localhost:5000/customers/${customerId}`,
+          `/api/customers/${customerId}`,
           {
             headers: {
               Authorization:
@@ -965,7 +945,6 @@ function CustomerDetails({
     }
   };
 
-
   const fetchFollowUps = async () => {
 
     try {
@@ -978,7 +957,7 @@ function CustomerDetails({
 
       const response =
         await fetch(
-          `http://localhost:5000/customers/${customerId}/follow-ups`,
+          `/api/customers/${customerId}/follow-ups`,
           {
             headers: {
               Authorization:
@@ -1015,14 +994,12 @@ function CustomerDetails({
     }
   };
 
-
   useEffect(() => {
 
     fetchCustomer();
     fetchFollowUps();
 
   }, [customerId]);
-
 
   const handleAddFollowUp = async (
     e: FormEvent
@@ -1043,7 +1020,6 @@ function CustomerDetails({
       return;
     }
 
-
     try {
 
       setSavingFollowUp(true);
@@ -1055,7 +1031,7 @@ function CustomerDetails({
 
       const response =
         await fetch(
-          `http://localhost:5000/customers/${customerId}/follow-ups`,
+          `/api/customers/${customerId}/follow-ups`,
           {
             method: "POST",
             headers: {
@@ -1105,7 +1081,6 @@ function CustomerDetails({
     }
   };
 
-
   if (loading) {
 
     return (
@@ -1115,7 +1090,6 @@ function CustomerDetails({
     );
 
   }
-
 
   if (error) {
 
@@ -1138,7 +1112,6 @@ function CustomerDetails({
 
   }
 
-
   if (!customer) {
 
     return (
@@ -1160,7 +1133,6 @@ function CustomerDetails({
 
   }
 
-
   return (
     <div className="customers-page">
 
@@ -1170,7 +1142,6 @@ function CustomerDetails({
       >
         ← Back to Customers
       </button>
-
 
       <div className="customer-detail-header">
 
@@ -1187,7 +1158,6 @@ function CustomerDetails({
 
         </div>
 
-
         <span
           className={`status ${customer.status.toLowerCase()}`}
         >
@@ -1195,7 +1165,6 @@ function CustomerDetails({
         </span>
 
       </div>
-
 
       <div className="customer-details-grid">
 
@@ -1217,7 +1186,6 @@ function CustomerDetails({
 
           </div>
 
-
           <div className="detail-row">
 
             <span>
@@ -1231,7 +1199,6 @@ function CustomerDetails({
           </div>
 
         </div>
-
 
         <div className="detail-card">
 
@@ -1254,7 +1221,6 @@ function CustomerDetails({
 
           </div>
 
-
           <div className="detail-row">
 
             <span>
@@ -1266,7 +1232,6 @@ function CustomerDetails({
             </strong>
 
           </div>
-
 
           <div className="detail-row">
 
@@ -1282,7 +1247,6 @@ function CustomerDetails({
 
         </div>
 
-
         <div className="detail-card">
 
           <h2>
@@ -1295,7 +1259,6 @@ function CustomerDetails({
           </p>
 
         </div>
-
 
         <div className="detail-card">
 
@@ -1321,7 +1284,6 @@ function CustomerDetails({
 
         </div>
 
-
         <div className="detail-card">
 
           <h2>
@@ -1336,7 +1298,6 @@ function CustomerDetails({
         </div>
 
       </div>
-
 
       <div className="follow-up-section">
 
@@ -1354,7 +1315,6 @@ function CustomerDetails({
             </p>
 
           </div>
-
 
           {canManageCustomers && (
 
@@ -1378,7 +1338,6 @@ function CustomerDetails({
 
         </div>
 
-
         {followUpSuccess && (
 
           <div className="success-message">
@@ -1387,7 +1346,6 @@ function CustomerDetails({
 
         )}
 
-
         {followUpError && (
 
           <div className="error-message">
@@ -1395,7 +1353,6 @@ function CustomerDetails({
           </div>
 
         )}
-
 
         {showFollowUpForm && (
 
@@ -1426,7 +1383,6 @@ function CustomerDetails({
 
             </div>
 
-
             <div className="form-actions">
 
               <button
@@ -1446,7 +1402,6 @@ function CustomerDetails({
                 Cancel
               </button>
 
-
               <button
                 type="submit"
                 className="save-button"
@@ -1464,7 +1419,6 @@ function CustomerDetails({
           </form>
 
         )}
-
 
         <div className="follow-up-list">
 
@@ -1522,6 +1476,5 @@ function CustomerDetails({
     </div>
   );
 }
-
 
 export default Customers;
