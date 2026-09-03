@@ -108,12 +108,12 @@ function Dashboard() {
 
       const response =
         await fetch(
-          "http://localhost:5000/dashboard",
+          "/api/dashboard",
           {
             headers: {
               Authorization:
-                `Bearer ${token}`
-            }
+                `Bearer ${token}`,
+            },
           }
         );
 
@@ -128,7 +128,6 @@ function Dashboard() {
       }
 
       setData(result);
-
     } catch (error) {
       console.error(
         "Dashboard error:",
@@ -140,7 +139,6 @@ function Dashboard() {
           ? error.message
           : "Failed to load dashboard"
       );
-
     } finally {
       setLoading(false);
     }
@@ -463,7 +461,7 @@ function Dashboard() {
               ).toLocaleString(
                 "en-IN",
                 {
-                  maximumFractionDigits: 2
+                  maximumFractionDigits: 2,
                 }
               )}
             </strong>
