@@ -49,7 +49,7 @@ interface Challan {
   created_at: string;
 }
 
-const API_URL = "http://localhost:5000";
+const API_URL = "/api";
 
 function money(value: string | number) {
   return Number(value).toLocaleString("en-IN", {
