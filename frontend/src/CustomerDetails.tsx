@@ -34,29 +34,35 @@ function CustomerDetails({
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token =
+          localStorage.getItem("token");
 
         const response = await fetch(
-          `http://localhost:5000/customers/${customerId}`,
+          `/api/customers/${customerId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization:
+                `Bearer ${token}`
             }
           }
         );
 
-        const data = await response.json();
+        const data =
+          await response.json();
 
         if (!response.ok) {
           setError(
-            data.message || "Failed to fetch customer"
+            data.message ||
+              "Failed to fetch customer"
           );
           return;
         }
 
         setCustomer(data.customer);
       } catch {
-        setError("Unable to connect to server");
+        setError(
+          "Unable to connect to server"
+        );
       } finally {
         setLoading(false);
       }
@@ -76,6 +82,7 @@ function CustomerDetails({
   if (error) {
     return (
       <div className="customers-page">
+
         <button
           className="back-button"
           onClick={onBack}
@@ -86,6 +93,7 @@ function CustomerDetails({
         <div className="error-message">
           {error}
         </div>
+
       </div>
     );
   }
@@ -93,6 +101,7 @@ function CustomerDetails({
   if (!customer) {
     return (
       <div className="customers-page">
+
         <button
           className="back-button"
           onClick={onBack}
@@ -103,12 +112,14 @@ function CustomerDetails({
         <div className="error-message">
           Customer not found
         </div>
+
       </div>
     );
   }
 
   return (
     <div className="customers-page">
+
       <button
         className="back-button"
         onClick={onBack}
@@ -117,13 +128,18 @@ function CustomerDetails({
       </button>
 
       <div className="customer-detail-header">
+
         <div>
-          <h1>{customer.name}</h1>
+
+          <h1>
+            {customer.name}
+          </h1>
 
           <p>
             {customer.business_name ||
               "Customer Details"}
           </p>
+
         </div>
 
         <span
@@ -131,63 +147,112 @@ function CustomerDetails({
         >
           {customer.status}
         </span>
+
       </div>
 
       <div className="customer-details-grid">
+
         <div className="detail-card">
-          <h2>Contact Information</h2>
+
+          <h2>
+            Contact Information
+          </h2>
 
           <div className="detail-row">
-            <span>Mobile</span>
-            <strong>{customer.mobile}</strong>
+
+            <span>
+              Mobile
+            </span>
+
+            <strong>
+              {customer.mobile}
+            </strong>
+
           </div>
 
           <div className="detail-row">
-            <span>Email</span>
+
+            <span>
+              Email
+            </span>
+
             <strong>
               {customer.email || "-"}
             </strong>
+
           </div>
+
         </div>
 
         <div className="detail-card">
-          <h2>Business Information</h2>
+
+          <h2>
+            Business Information
+          </h2>
 
           <div className="detail-row">
-            <span>Business Name</span>
+
+            <span>
+              Business Name
+            </span>
+
             <strong>
               {customer.business_name || "-"}
             </strong>
+
           </div>
 
           <div className="detail-row">
-            <span>Customer Type</span>
+
+            <span>
+              Customer Type
+            </span>
+
             <strong>
               {customer.customer_type}
             </strong>
+
           </div>
 
           <div className="detail-row">
-            <span>GST Number</span>
+
+            <span>
+              GST Number
+            </span>
+
             <strong>
               {customer.gst_number || "-"}
             </strong>
+
           </div>
+
         </div>
 
         <div className="detail-card">
-          <h2>Address</h2>
+
+          <h2>
+            Address
+          </h2>
 
           <p className="detail-text">
-            {customer.address || "No address provided"}
+            {customer.address ||
+              "No address provided"}
           </p>
+
         </div>
 
         <div className="detail-card">
-          <h2>Follow-up</h2>
+
+          <h2>
+            Follow-up
+          </h2>
 
           <div className="detail-row">
-            <span>Next Follow-up</span>
+
+            <span>
+              Next Follow-up
+            </span>
+
             <strong>
               {customer.follow_up_date
                 ? new Date(
@@ -195,17 +260,26 @@ function CustomerDetails({
                   ).toLocaleDateString()
                 : "-"}
             </strong>
+
           </div>
+
         </div>
 
         <div className="detail-card">
-          <h2>Notes</h2>
+
+          <h2>
+            Notes
+          </h2>
 
           <p className="detail-text">
-            {customer.notes || "No notes available"}
+            {customer.notes ||
+              "No notes available"}
           </p>
+
         </div>
+
       </div>
+
     </div>
   );
 }
