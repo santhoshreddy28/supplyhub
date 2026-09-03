@@ -18,6 +18,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/products", productRoutes);
 app.use("/stock", stockRoutes);
 app.use("/dashboard", dashboardRoutes);
@@ -25,14 +26,8 @@ app.use("/auth", authRoutes);
 app.use("/test", testRoutes);
 app.use("/customers", customerRoutes);
 app.use("/challans", challanRoutes);
-app.use(
-  "/stock-movements",
-  stockMovementRoutes
-);
-app.use(
-  "/invoices",
-  invoiceRoutes
-);
+app.use("/stock-movements", stockMovementRoutes);
+app.use("/invoices", invoiceRoutes);
 
 app.get("/", (req, res) => {
   res.json({
@@ -57,8 +52,4 @@ app.get("/db-test", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`SupplyHub API running on port ${PORT}`);
-});
+export default app;
