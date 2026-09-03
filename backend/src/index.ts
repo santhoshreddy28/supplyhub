@@ -19,6 +19,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+/*
+ * Vercel sends API requests as:
+ * /api/auth/login
+ * /api/products
+ * /api/customers
+ *
+ * Remove the /api prefix before Express matches
+ * the existing routes.
+ */
+app.use((req, res, next) => {
+  if (req.url === "/api") {
+    req.url = "/";
+  } else if (req.url.startsWith("/api/")) {
+    req.url = req.url.substring(4);
+  }
+
+  next();
+});
+
 app.use("/products", productRoutes);
 app.use("/stock", stockRoutes);
 app.use("/dashboard", dashboardRoutes);
@@ -31,7 +50,7 @@ app.use("/invoices", invoiceRoutes);
 
 app.get("/", (req, res) => {
   res.json({
-    message: "SupplyHub API is running"
+    message: "SupplyHub API is running",
   });
 });
 
@@ -41,13 +60,16 @@ app.get("/db-test", async (req, res) => {
 
     res.json({
       message: "Database connected successfully",
-      time: result[0].now
+      time: result[0].now,
     });
   } catch (error) {
-    console.error("Database connection error:", error);
+    console.error(
+      "Database connection error:",
+      error
+    );
 
     res.status(500).json({
-      message: "Database connection failed"
+      message: "Database connection failed",
     });
   }
 });
