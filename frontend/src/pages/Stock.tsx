@@ -113,7 +113,7 @@ const Stock = () => {
       }
 
       const response = await fetch(
-        "http://localhost:5000/products?limit=100",
+        "/api/products?limit=100",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -257,7 +257,7 @@ const Stock = () => {
       }
 
       const response = await fetch(
-        `http://localhost:5000/stock/${selectedProduct.id}`,
+        `/api/stock/${selectedProduct.id}`,
         {
           method: "POST",
 
@@ -349,7 +349,7 @@ const Stock = () => {
       }
 
       const response = await fetch(
-        `http://localhost:5000/stock/${product.id}`,
+        `/api/stock/${product.id}`,
         {
           headers: {
             Authorization:
@@ -575,6 +575,7 @@ const Stock = () => {
           </div>
 
           <div>
+
             <span>
               Total Products
             </span>
@@ -582,6 +583,7 @@ const Stock = () => {
             <strong>
               {totalProducts}
             </strong>
+
           </div>
 
         </div>
@@ -593,6 +595,7 @@ const Stock = () => {
           </div>
 
           <div>
+
             <span>
               Total Units
             </span>
@@ -600,6 +603,7 @@ const Stock = () => {
             <strong>
               {totalStock}
             </strong>
+
           </div>
 
         </div>
@@ -611,6 +615,7 @@ const Stock = () => {
           </div>
 
           <div>
+
             <span>
               Low Stock
             </span>
@@ -618,6 +623,7 @@ const Stock = () => {
             <strong>
               {lowStockCount}
             </strong>
+
           </div>
 
         </div>
@@ -629,6 +635,7 @@ const Stock = () => {
           </div>
 
           <div>
+
             <span>
               Out of Stock
             </span>
@@ -636,6 +643,7 @@ const Stock = () => {
             <strong>
               {outOfStockCount}
             </strong>
+
           </div>
 
         </div>
@@ -649,6 +657,7 @@ const Stock = () => {
         <div className="stock-section-header">
 
           <div>
+
             <h2>
               Inventory
             </h2>
@@ -662,6 +671,7 @@ const Stock = () => {
                 : "s"}{" "}
               shown
             </p>
+
           </div>
 
           <div className="stock-search-wrap">
@@ -705,6 +715,7 @@ const Stock = () => {
             <table className="stock-table stock-modern-table">
 
               <thead>
+
                 <tr>
 
                   <th>
@@ -736,6 +747,7 @@ const Stock = () => {
                   </th>
 
                 </tr>
+
               </thead>
 
               <tbody>
@@ -749,9 +761,11 @@ const Stock = () => {
                       colSpan={7}
                       className="empty-state"
                     >
+
                       {search
                         ? "No products match your search."
                         : "No products found."}
+
                     </td>
 
                   </tr>
@@ -767,6 +781,7 @@ const Stock = () => {
                         );
 
                       return (
+
                         <tr
                           key={product.id}
                         >
@@ -778,9 +793,11 @@ const Stock = () => {
                             <div className="stock-product-cell">
 
                               <div className="stock-product-avatar">
+
                                 {product.name
                                   .charAt(0)
                                   .toUpperCase()}
+
                               </div>
 
                               <div>
@@ -906,8 +923,11 @@ const Stock = () => {
                           </td>
 
                         </tr>
+
                       );
+
                     }
+
                   )
 
                 )}
@@ -936,7 +956,9 @@ const Stock = () => {
                   e.currentTarget &&
                 !saving
               ) {
+
                 closeStockModal();
+
               }
 
             }}
@@ -997,9 +1019,7 @@ const Stock = () => {
                 </div>
 
                 <strong>
-                  {
-                    selectedProduct.current_stock
-                  }
+                  {selectedProduct.current_stock}
                 </strong>
 
               </div>
@@ -1205,7 +1225,9 @@ const Stock = () => {
                 e.target ===
                 e.currentTarget
               ) {
+
                 closeHistory();
+
               }
 
             }}
